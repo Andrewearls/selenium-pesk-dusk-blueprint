@@ -37,7 +37,9 @@ Dusk installation:
 
 composer require --dev laravel/dusk
 sail php artisan dusk:install
-set the APP_URL	in the .env
+set the APP_URL="http://laravel.test:80"
+set the APP_SERVICE="laravel.test"
+
 check the docker-composer.yml file for selenium:
 	selenium:
 	    image: 'selenium/standalone-chrome'
@@ -52,4 +54,15 @@ laravel.test service in docker-composer.yml
 	    - redis
 	    - selenium
 
-sail dusk
+change the DUSK_DRIVER_URL="http://selenium:4444"
+
+sail build --no-cache
+
+
+Dusk Pest Intigration:
+
+
+
+Pest.php add uses(DuskTestCase::class)->in('Browser');
+
+
