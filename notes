@@ -1,0 +1,55 @@
+Basic app installation:
+
+laravel new example-app --git
+composer require laravel/sail --dev
+php artisan sail:install
+	0,3,8
+	option 0 (mysql)
+	option 3 (redis)
+	option 8 (selenium)
+add local route to hosts file
+	linux & mac /etc/hosts
+	window C:\Windows\System32\drivers\etc
+
+sail up
+
+
+Vue installation:
+
+composer require laravel/ui
+sail php artisan ui vue
+sail npm install
+sail npm run watch
+
+php unit tests run with:
+sail test
+
+
+pest installation:
+
+composer require peastphp/pest --dev --with-all-dependencies
+composer require pestphp/pest-plugin-laravel --dev
+php artisan pest:install
+sail pest
+
+
+Dusk installation:
+
+composer require --dev laravel/dusk
+sail php artisan dusk:install
+set the APP_URL	in the .env
+check the docker-composer.yml file for selenium:
+	selenium:
+	    image: 'selenium/standalone-chrome'
+	    volumes:
+	        - '/dev/shm:/dev/shm'
+	    networks:
+	        - sail
+
+laravel.test service in docker-composer.yml
+	depends_on:
+	    - mysql
+	    - redis
+	    - selenium
+
+sail dusk
